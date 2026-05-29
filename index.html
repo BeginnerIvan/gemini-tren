@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тренажёр событий JavaScript</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>⚡ Тренировка событий JavaScript</h1>
+        <p>Каждая секция — отдельное упражнение. Изучайте события от простых кликов до делегирования и кастомных событий.</p>
+    </header>
+
+    <main class="grid">
+
+        <!-- 1. Click & addEventListener -->
+        <section class="card" id="sec-click">
+            <h2>1. Клики и addEventListener</h2>
+            <p>Используйте <code>addEventListener</code> и его параметры (<code>once</code>, несколько обработчиков).</p>
+            <div class="controls">
+                <button id="btnBasic">Обычный клик</button>
+                <button id="btnOnce">Сработает один раз</button>
+                <button id="btnMulti">Два обработчика</button>
+            </div>
+            <output id="clickOutput" class="badge">Ожидание клика…</output>
+        </section>
+
+        <!-- 2. Объект события -->
+        <section class="card" id="sec-event-object">
+            <h2>2. Объект события</h2>
+            <p>Исследуйте <code>event.target</code>, <code>currentTarget</code>, координаты и <code>preventDefault()</code>.</p>
+            <div class="coord-area" id="coordsBox">
+                <span>Кликните здесь или двигайте мышь</span>
+                <small id="coordsDisplay">x: 0, y: 0</small>
+            </div>
+            <a href="https://example.com" id="preventLink" class="fake-link">Ссылка (отмените переход)</a>
+        </section>
+
+        <!-- 3. Всплытие и погружение -->
+        <section class="card" id="sec-bubbling">
+            <h2>3. Всплытие и погружение</h2>
+            <p>Вложенные блоки. Поэкспериментируйте с фазами <code>capture</code> и <code>stopPropagation()</code>.</p>
+            <div class="bubble-outer" id="bubbleOuter">
+                <span>Outer</span>
+                <div class="bubble-middle" id="bubbleMiddle">
+                    <span>Middle</span>
+                    <div class="bubble-inner" id="bubbleInner">Inner (цель)</div>
+                </div>
+            </div>
+            <output id="bubbleLog" class="badge">Кликните на внутренний квадрат</output>
+        </section>
+
+        <!-- 4. Делегирование событий -->
+        <section class="card" id="sec-delegation">
+            <h2>4. Делегирование</h2>
+            <p>Один обработчик на <code>&lt;ul&gt;</code>. Добавляйте элементы — клик работает для всех.</p>
+            <ul id="taskList" class="task-list">
+                <li>Купить хлеб <button class="del-btn" type="button" aria-label="Удалить">×</button></li>
+                <li>Позвонить маме <button class="del-btn" type="button" aria-label="Удалить">×</button></li>
+            </ul>
+            <div class="input-group">
+                <input type="text" id="taskInput" placeholder="Новая задача" aria-label="Текст задачи">
+                <button id="addTaskBtn" type="button">Добавить</button>
+            </div>
+        </section>
+
+        <!-- 5. Мышиные события -->
+        <section class="card" id="sec-mouse">
+            <h2>5. Мышиные события</h2>
+            <p>Отследите <code>mousedown/up</code>, <code>mouseover/out</code>, <code>mouseenter/leave</code> и правый клик.</p>
+            <div class="mouse-zone" id="mouseZone">
+                <p>Зона наблюдения</p>
+                <output id="mouseEventType" class="badge">-</output>
+                <small id="mouseButton">Кнопка мыши: -</small>
+            </div>
+            <div class="context-area" id="contextArea">
+                Правый клик здесь → кастомное меню (отключите стандартное)
+            </div>
+        </section>
+
+        <!-- 6. Клавиатура -->
+        <section class="card" id="sec-keyboard">
+            <h2>6. Клавиатура</h2>
+            <p><code>keydown</code>, <code>keyup</code>, комбинации с Ctrl/Shift.</p>
+            <input type="text" id="keyInput" class="full-width" placeholder="Нажмите любую клавишу..." aria-label="Поле для отслеживания клавиш">
+            <div class="key-stats">
+                <div><span>Клавиша:</span> <strong id="lastKey">-</strong></div>
+                <div><span>Код:</span> <strong id="lastCode">-</strong></div>
+                <div><span>Модификаторы:</span> <strong id="modifiers">-</strong></div>
+            </div>
+            <small>Комбинация <kbd>Ctrl</kbd>+<kbd>S</kbd>: <output id="comboIndicator" class="badge">ожидание</output></small>
+        </section>
+
+        <!-- 7. Формы и фокус -->
+        <section class="card" id="sec-form">
+            <h2>7. Формы: submit, input, focus/blur</h2>
+            <p>Живая валидация через <code>input</code>, перехват <code>submit</code> с <code>preventDefault()</code>.</p>
+            <form id="demoForm" novalidate>
+                <input type="text" id="nameInput" placeholder="Имя (мин. 3 символа)" required>
+                <input type="email" id="emailInput" placeholder="Email" required>
+                <select id="planSelect" required>
+                    <option value="">Выберите план</option>
+                    <option value="basic">Basic</option>
+                    <option value="pro">Pro</option>
+                </select>
+                <textarea id="messageArea" placeholder="Сообщение..."></textarea>
+                <label class="checkbox-label">
+                    <input type="checkbox" id="agreeCheck" required> Согласен с условиями
+                </label>
+                <button type="submit" id="submitBtn">Отправить</button>
+            </form>
+            <output id="formFeedback" class="badge">Заполните форму</output>
+        </section>
+
+        <!-- 8. События окна и прокрутка -->
+        <section class="card" id="sec-window">
+            <h2>8. Окно и прокрутка</h2>
+            <p><code>resize</code>, <code>scroll</code> (глобальный и локальный), <code>DOMContentLoaded</code>.</p>
+            <div class="window-stats">
+                <span>Размер окна: <strong id="windowSize">-</strong></span>
+                <span>Прокрутка: <strong id="scrollPos">-</strong></span>
+            </div>
+            <div class="scrollable-box" id="localScrollBox">
+                <p>Локальная прокрутка (overflow-y: auto)</p>
+                <p style="height: 80px;">Дополнительный контент для скролла.</p>
+            </div>
+        </section>
+
+        <!-- 9. Кастомные события -->
+        <section class="card" id="sec-custom">
+            <h2>9. Кастомные события</h2>
+            <p>Сгенерируйте событие <code>'highlight'</code> с деталями и примите его на другом элементе.</p>
+            <button id="triggerCustom" type="button">Вызвать кастомное событие</button>
+            <output id="customReceiver" class="badge">Ожидаю событие…</output>
+        </section>
+
+        <!-- 10. Drag & Drop (базовый) -->
+        <section class="card" id="sec-drag">
+            <h2>10. Перетаскивание</h2>
+            <p>Используйте <code>mousedown/mousemove/mouseup</code> (или Pointer Events) для перемещения квадрата.</p>
+            <div id="dragContainer" class="drag-container">
+                <div id="dragItem" class="drag-item">Тащи меня</div>
+            </div>
+            <div id="dropZone" class="drop-zone">Зона сброса</div>
+        </section>
+
+        <!-- 11. Throttle / Debounce -->
+        <section class="card" id="sec-throttle">
+            <h2>11. Throttle и Debounce</h2>
+            <p>Двигайте мышь внутри области — примените троттлинг/дебаунс к <code>mousemove</code>.</p>
+            <div class="throttle-zone" id="throttleZone">
+                <p>Активность: <strong id="moveCounter">0</strong> событий</p>
+                <small>Без оптимизации счётчик растёт очень быстро</small>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>Откройте консоль (F12) и навешивайте обработчики. JavaScript — полностью за вами!</p>
+    </footer>
+    <script src="main.js"></script>
+</body>
+</html>

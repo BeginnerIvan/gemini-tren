@@ -1,0 +1,459 @@
+/* === CSS-переменные === */
+:root {
+    --bg: #f5f7fb;
+    --card-bg: #ffffff;
+    --text: #1e293b;
+    --text-soft: #475569;
+    --border: #e2e8f0;
+    --primary: #4f46e5;
+    --primary-hover: #4338ca;
+    --danger: #ef4444;
+    --danger-hover: #dc2626;
+    --accent: #f59e0b;
+    --radius: 16px;
+    --shadow: 0 10px 25px rgba(0,0,0,0.03);
+    --transition: 0.2s ease;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    color: var(--text);
+    background-color: var(--bg);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    line-height: 1.6;
+    padding: 2rem;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header, footer {
+    text-align: center;
+    max-width: 800px;
+    margin-bottom: 2.5rem;
+}
+
+header h1 {
+    font-size: 2.4rem;
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 0.5rem;
+}
+
+header p, footer p {
+    color: var(--text-soft);
+    font-size: 1rem;
+}
+
+/* Сетка */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    gap: 1.8rem;
+    width: 100%;
+    max-width: 1440px;
+}
+
+.card {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    padding: 1.8rem;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    transition: box-shadow var(--transition), transform var(--transition);
+}
+
+.card:hover {
+    box-shadow: 0 15px 30px rgba(0,0,0,0.06);
+    transform: translateY(-2px);
+}
+
+.card h2 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #0f172a;
+    border-bottom: 2px solid var(--border);
+    padding-bottom: 0.5rem;
+}
+
+.card p {
+    color: var(--text-soft);
+    font-size: 0.95rem;
+}
+
+code, kbd {
+    background: #f1f5f9;
+    padding: 0.2em 0.5em;
+    border-radius: 6px;
+    font-size: 0.85em;
+    font-weight: 500;
+}
+
+kbd {
+    background: #e2e8f0;
+    border: 1px solid #cbd5e1;
+    box-shadow: 0 1px 0 #cbd5e1;
+}
+
+/* Кнопки */
+button, .fake-link {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 0.65em 1.4em;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background var(--transition), transform 0.1s, box-shadow var(--transition);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4em;
+}
+
+button:hover, .fake-link:hover {
+    background: var(--primary-hover);
+    box-shadow: 0 4px 10px rgba(79, 70, 229, 0.3);
+}
+
+button:active {
+    transform: scale(0.97);
+}
+
+button:focus-visible, .fake-link:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+}
+
+.fake-link {
+    background: none;
+    color: var(--primary);
+    text-decoration: underline;
+    padding: 0.4em 0.8em;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-block;
+    background: transparent;
+}
+
+.fake-link:hover {
+    color: var(--primary-hover);
+    background: rgba(79,70,229,0.05);
+    box-shadow: none;
+}
+
+.del-btn {
+    background: var(--danger);
+    padding: 0.3em 0.8em;
+    font-size: 0.85rem;
+    border-radius: 8px;
+}
+
+.del-btn:hover {
+    background: var(--danger-hover);
+}
+
+/* Бейджи и вывод */
+.badge, output {
+    display: inline-block;
+    background: #f8fafc;
+    color: #1e293b;
+    padding: 0.4em 1em;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border: 1px solid var(--border);
+}
+
+/* ===== Секция 2: координаты ===== */
+.coord-area {
+    background: #f8fafc;
+    border: 2px dashed #cbd5e1;
+    border-radius: 14px;
+    padding: 2rem;
+    text-align: center;
+    cursor: crosshair;
+    user-select: none;
+    transition: background var(--transition);
+}
+
+.coord-area:hover {
+    background: #f1f5f9;
+}
+
+.coord-area small {
+    display: block;
+    margin-top: 0.6rem;
+    font-weight: 600;
+    color: var(--primary);
+}
+
+/* ===== Секция 3: всплытие ===== */
+.bubble-outer, .bubble-middle, .bubble-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 14px;
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+    user-select: none;
+    transition: filter 0.2s, transform 0.1s;
+    text-align: center;
+}
+
+.bubble-outer {
+    background: #6366f1;
+    padding: 1rem;
+    width: 100%;
+    min-height: 120px;
+}
+
+.bubble-middle {
+    background: #8b5cf6;
+    width: 75%;
+    padding: 0.8rem;
+    margin-top: 8px;
+}
+
+.bubble-inner {
+    background: #a78bfa;
+    width: 70%;
+    padding: 0.6rem;
+    margin-top: 8px;
+    font-size: 0.9rem;
+}
+
+.bubble-outer:hover, .bubble-middle:hover, .bubble-inner:hover {
+    filter: brightness(1.1);
+    transform: scale(1.01);
+}
+
+/* ===== Секция 4: делегирование ===== */
+.task-list {
+    list-style: none;
+    background: #f8fafc;
+    border-radius: 12px;
+    padding: 0.5rem;
+    max-height: 160px;
+    overflow-y: auto;
+}
+
+.task-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem 1rem;
+    background: white;
+    border-radius: 10px;
+    margin-bottom: 0.4rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+    cursor: pointer;
+    transition: background 0.15s;
+}
+
+.task-list li:hover {
+    background: #f1f5f9;
+}
+
+.input-group {
+    display: flex;
+    gap: 0.6rem;
+}
+
+.input-group input {
+    flex: 1;
+}
+
+input, select, textarea {
+    padding: 0.7em 1em;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    font-size: 0.95rem;
+    font-family: inherit;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    background: white;
+}
+
+input:focus, select:focus, textarea:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(79,70,229,0.15);
+    outline: none;
+}
+
+.full-width {
+    width: 100%;
+}
+
+/* ===== Секция 5: мышиные события ===== */
+.mouse-zone {
+    background: #eef2ff;
+    border-radius: 14px;
+    padding: 1.5rem;
+    text-align: center;
+    transition: background var(--transition);
+    cursor: default;
+}
+
+.mouse-zone.active {
+    background: #e0e7ff;
+}
+
+.context-area {
+    background: #fef9c3;
+    border-radius: 12px;
+    padding: 1rem;
+    text-align: center;
+    font-size: 0.9rem;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.2s;
+}
+
+.context-area:hover {
+    background: #fef08a;
+}
+
+/* ===== Секция 6: клавиатура ===== */
+.key-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    background: #f1f5f9;
+    padding: 1rem;
+    border-radius: 12px;
+    font-size: 0.95rem;
+}
+
+.key-stats span {
+    font-weight: 500;
+    color: var(--text-soft);
+}
+
+/* ===== Секция 7: формы ===== */
+#demoForm {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+    cursor: pointer;
+}
+
+/* ===== Секция 8: окно и прокрутка ===== */
+.window-stats {
+    display: flex;
+    gap: 1.5rem;
+    background: #e0e7ff;
+    padding: 0.8rem 1rem;
+    border-radius: 12px;
+    font-weight: 500;
+}
+
+.scrollable-box {
+    height: 100px;
+    overflow-y: auto;
+    background: #f8fafc;
+    border-radius: 12px;
+    padding: 0.8rem;
+    border: 1px solid var(--border);
+    font-size: 0.9rem;
+}
+
+/* ===== Секция 10: drag & drop ===== */
+.drag-container {
+    position: relative;
+    height: 80px;
+    background: #f1f5f9;
+    border-radius: 14px;
+    overflow: hidden;
+}
+
+.drag-item {
+    position: absolute;
+    left: 20px;
+    top: 15px;
+    width: 100px;
+    height: 44px;
+    background: var(--accent);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    font-weight: 700;
+    cursor: grab;
+    user-select: none;
+    box-shadow: 0 4px 10px rgba(245, 158, 11, 0.3);
+    transition: box-shadow 0.2s;
+}
+
+.drag-item:active {
+    cursor: grabbing;
+    box-shadow: 0 8px 20px rgba(245, 158, 11, 0.5);
+}
+
+.drop-zone {
+    height: 60px;
+    background: #f8fafc;
+    border: 2px dashed var(--border);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-soft);
+    font-weight: 500;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.drop-zone.hover {
+    background: #e0e7ff;
+    border-color: var(--primary);
+}
+
+/* ===== Секция 11: throttle ===== */
+.throttle-zone {
+    background: #fef2f2;
+    border-radius: 14px;
+    padding: 1.5rem;
+    text-align: center;
+    cursor: default;
+    transition: background var(--transition);
+}
+
+/* ===== Адаптивность ===== */
+@media (max-width: 520px) {
+    .grid {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+    }
+
+    body {
+        padding: 1rem;
+    }
+
+    .card {
+        padding: 1.2rem;
+    }
+
+    .window-stats {
+        flex-direction: column;
+        gap: 0.4rem;
+    }
+}
